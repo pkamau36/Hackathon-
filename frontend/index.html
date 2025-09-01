@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Empowerment Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Authentication Container -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>🌐 Join the Empowerment Hub</h2>
+                <p>Empowering young women across Sub-Saharan Africa</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="auth-btn">🔑 Login</button>
+                <div class="auth-toggle">
+                    <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up here</a></p>
+                </div>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signupForm" class="auth-form hidden">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" required placeholder="First name">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" required placeholder="Last name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <select id="age" required>
+                        <option value="">Select your age</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25+">25+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <select id="location" required>
+                        <option value="">Select your country</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required placeholder="Create a strong password">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required placeholder="Confirm your password">
+                </div>
+                <button type="submit" class="auth-btn">🚀 Create Account</button>
+                <div class="auth-toggle">
+                    <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div class="app-container" id="appContainer">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <button class="logout-btn" onclick="logout()">👋 Logout</button>
+                <h1>🌐 AI-Powered Empowerment Hub</h1>
+                <p style="font-size: 1.2em; color: #666; margin: 10px 0;">Welcome back, <span id="userNameDisplay"></span>!</p>
+                <div class="sdg-badges">
+                    <div class="sdg-badge">🍎 Zero Hunger (SDG 2)</div>
+                    <div class="sdg-badge">🏥 Good Health (SDG 3)</div>
+                    <div class="sdg-badge">📚 Quality Education (SDG 4)</div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <div class="user-profile">
+                        <div class="avatar" id="userAvatar">A</div>
+                        <h3 id="userName">User</h3>
+                        <p style="color: #666;" id="userLocation">Location</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%"></div>
+                        </div>
+                        <p style="font-size: 0.9em; color: #666;">Learning Progress: 25%</p>
+                    </div>
+
+                    <ul class="nav-menu">
+                        <li class="nav-item active" onclick="showSection('dashboard')">🏠 Dashboard</li>
+                        <li class="nav-item" onclick="showSection('health')">🏥 Health Assistant</li>
+                        <li class="nav-item" onclick="showSection('menstrual')">🌸 Menstrual Health</li>
+                        <li class="nav-item" onclick="showSection('reproductive')">💊 Reproductive Health</li>
+                        <li class="nav-item" onclick="showSection('education')">📚 AI Tutor</li>
+                        <li class="nav-item" onclick="showSection('career')">💼 Career Guidance</li>
+                        <li class="nav-item" onclick="showSection('community')">👥 Community</li>
+                        <li class="nav-item" onclick="showSection('emergency')">🆘 Emergency</li>
+                    </ul>
+
+                    <div style="margin-top: 30px; text-align: center;">
+                        <button class="btn secondary">⭐ Upgrade to Premium</button>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="content-area" id="mainContent">
+                    <!-- Dashboard Section -->
+                    <div class="feature-section active" id="dashboard">
+                        <h2 class="section-title">🏠 Dashboard</h2>
+                        <div class="health-topics">
+                            <div class="topic-card">
+                                <div class="topic-icon">📊</div>
+                                <h3>Health Progress</h3>
+                                <p>Track your wellness journey with AI insights and personalized recommendations.</p>
+                                <button class="btn">View Progress</button>
+                            </div>
+                            <div class="topic-card">
+                                <div class="topic-icon">🎓</div>
+                                <h3>Learning Achievements</h3>
+                                <p>Celebrate your educational milestones and unlock new learning paths.</p>
+                                <button class="btn">See Achievements</button>
+                            </div>
+                            <div class="topic-card urgent">
+                                <div class="topic-icon">🆘</div>
+                                <h3>Quick Support</h3>
+                                <p>24/7 access to emergency support and confidential counseling services.</p>
+                                <button class="btn">Get Help Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Health Assistant Section -->
+                    <div class="feature-section" id="health">
+                        <h2 class="section-title">🏥 Health Assistant</h2>
+                        <div class="chat-interface">
+                            <div class="chat-messages" id="healthChat">
+                                <div class="message ai">
+                                    Hello! I'm your confidential health assistant. I'm here to provide accurate information about reproductive health, wellness, and answer any questions you might have. Everything we discuss is completely private. What would you like to know about today? 💜
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" id="healthInput" placeholder="Ask about health, contraception, pregnancy, STIs, or any health concern..." onkeypress="handleHealthEnter(event)">
+                                <button class="send-btn" onclick="sendHealthMessage()">Send</button>
+                            </div>
+                        </div>
+                        
+                        <div class="emergency-contact">
+                            <h3>🆘 Need Immediate Help?</h3>
+                            <div class="hotline-number">Kenya: 116 (Toll Free)</div>
+                            <div class="hotline-number">Uganda: 0800 111 116</div>
+                            <p>24/7 confidential crisis support available</p>
+                        </div>
+                    </div>
+
+                    <!-- Menstrual Health Section -->
+                    <div class="feature-section" id="menstrual">
+                        <h2 class="section-title">🌸 Menstrual Health & Hygiene</h2>
+                        
+                        <div class="health-topics">
+                            <div class="topic-card">
+                                <div class="topic-icon">📅</div>
+                                <h3>Cycle Tracking</h3>
+                                <p>Track your menstrual cycle, symptoms, and patterns with AI-powered insights.</p>
+                                <button class="btn" onclick="showCycleTracker()">Start Tracking</button>
+                            </div>
+                            
+                            <div class="topic-card">
+                                <div class="topic-icon">💧</div>
+                                <h3>Menstrual Hygiene</h3>
+                                <p>Learn about proper hygiene practices, product options, and staying healthy during your period.</p>
+                                <button class="btn" onclick="showHygieneGuide()">Learn More</button>
+                            </div>
+                            
+                            <div class="topic-card urgent">
+                                <div class="topic-icon">⚠️</div>
+                                <h3>Menstrual Disorders</h3>
+                                <p>Understanding irregular periods, heavy bleeding, severe cramps, and when to seek help.</p>
+                                <button class="btn" onclick="showDisorderInfo()">Get Information</button>
+                            </div>
+                        </div>
+
+                        <!-- Cycle Tracking Form -->
+                        <div class="tracking-form" id="cycleTracker" style="display: none;">
+                            <h3>📅 Track Your Cycle</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Last Period Start Date</label>
+                                    <input type="date" id="lastPeriodDate">
+                                </div>
+                                <div class="form-group">
+                                    <label>Cycle Length (days)</label>
+                                    <select id="cycleLength">
+                                        <option value="21">21 days</option>
+                                        <option value="24">24 days</option>
+                                        <option value="28" selected>28 days</option>
+                                        <option value="30">30 days</option>
+                                        <option value="32">32 days</option>
+                                        <option value="35">35 days</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Period Duration (days)</label>
+                                    <select id="periodDuration">
+                                        <option value="3">3 days</option>
+                                        <option value="4">4 days</option>
+                                        <option value="5" selected>5 days</option>
+                                        <option value="6">6 days</option>
+                                        <option value="7">7 days</option>
+                                        <option value="8">8+ days</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn" onclick="calculateNextPeriod()">🔮 Predict Next Period</button>
+                            <div id="periodPrediction" style="margin-top: 15px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Reproductive Health Section -->
+                    <div class="feature-section" id="reproductive">
+                        <h2 class="section-title">💊 Reproductive Health Education</h2>
+                        
+                        <div class="health-topics">
+                            <div class="topic-card">
+                                <div class="topic-icon">💊</div>
+                                <h3>Contraception Options</h3>
+                                <p>Learn about different contraceptive methods: pills, condoms, IUDs, implants, and their effectiveness.</p>
+                                <button class="btn" onclick="showContraceptionInfo()">Explore Options</button>
+                            </div>
+                            
+                            <div class="topic-card">
+                                <div class="topic-icon">🤱</div>
+                                <h3>Pregnancy & Prenatal Care</h3>
+                                <p>Understanding pregnancy basics, prenatal care, nutrition, and safe delivery practices.</p>
+                                <button class="btn" onclick="showPregnancyInfo()">Learn More</button>
+                            </div>
+                            
+                            <div class="topic-card urgent">
+                                <div class="topic-icon">🛡️</div>
+                                <h3>STI Prevention & Testing</h3>
+                                <p>Information about sexually transmitted infections, prevention methods, testing, and treatment options.</p>
+                                <button class="btn" onclick="showSTIInfo()">Get Educated</button>
+                            </div>
+                            
+                            <div class="topic-card">
+                                <div class="topic-icon">💉</div>
+                                <h3>HPV Vaccination</h3>
+                                <p>Learn about HPV vaccination campaigns, cervical cancer prevention, and where to get vaccinated.</p>
+                                <button class="btn" onclick="showHPVInfo()">Vaccination Info</button>
+                            </div>
+                            
+                            <div class="topic-card urgent">
+                                <div class="topic-icon">🚨</div>
+                                <h3>Gender-Based Violence Support</h3>
+                                <p>Resources, support services, and information for survivors of gender-based violence.</p>
+                                <button class="btn" onclick="showGBVSupport()">Get Support</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education Section -->
+                    <div class="feature-section" id="education">
+                        <h2 class="section-title">📚 AI Tutor</h2>
+                        <p>Interactive learning with AI-powered personalized education.</p>
+                        <div class="health-topics">
+                            <div class="topic-card">
+                                <div class="topic-icon">🔢</div>
+                                <h3>Mathematics</h3>
+                                <p>From basic arithmetic to advanced algebra and statistics.</p>
+                                <button class="btn">Start Learning</button>
+                            </div>
+                            <div class="topic-card">
+                                <div class="topic-icon">🧬</div>
+                                <h3>Science</h3>
+                                <p>Biology, chemistry, physics, and health sciences.</p>
+                                <button class="btn">Explore Science</button>
+                            </div>
+                            <div class="topic-card">
+                                <div class="topic-icon">🌍</div>
+                                <h3>Languages</h3>
+                                <p>English, Swahili, French, and local languages.</p>
+                                <button class="btn">Learn Languages</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Career Section -->
+                    <div class="feature-section" id="career">
+                        <h2 class="section-title">💼 Career Guidance</h2>
+                        <p>AI-powered career planning and skill development for your future.</p>
+                        <div class="health-topics">
+                            <div class="topic-card">
+                                <div class="topic-icon">🎯</div>
+                                <h3>Career Assessment</h3>
+                                <p>Discover your strengths and ideal career paths.</p>
+                                <button class="btn">Take Assessment</button>
+                            </div>
+                            <div class="topic-card">
+                                <div class="topic-icon">🎓</div>
+                                <h3>Scholarship Opportunities</h3>
+                                <p>Find and apply for educational scholarships.</p>
+                                <button class="btn">Find Scholarships</button>
+                            </div>
+                            <div class="topic-card">
+                                <div class="topic-icon">👩‍💼</div>
+                                <h3>Mentorship Program</h3>
+                                <p>Connect with successful women in your field of interest.</p>
+                                <button class="btn">Find Mentor</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Community Section -->
+                    <div class="feature-section" id="community">
+                        <h2 class="section-title">👥 Community</h2>
+                        <p>Connect with other young women on similar journeys.</p>
+                        <div class="health-topics">
+                            <div class="topic-card">
+                                <div class="topic-icon">💬</div>
+                                <h3>Discussion Forums</h3>
+                                <p>Share experiences and get support from peers.</p>
+                                <button class="btn">Join Discussion</button>
+                            </div>
+                            <div class="topic-card">
+                                <div class="topic-icon">🌟</div>
+                                <h3>Success Stories</h3>
+                                <p>Read inspiring stories from other community members.</p>
+                                <button class="btn">Read Stories</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Section -->
+                    <div class="feature-section" id="emergency">
+                        <h2 class="section-title">🆘 Emergency Support</h2>
+                        <div class="emergency-contact">
+                            <h3>🚨 Crisis Helplines</h3>
+                            <div class="hotline-number">Kenya: 116 (Toll Free)</div>
+                            <div class="hotline-number">Uganda: 0800 111 116</div>
+                            <div class="hotline-number">Tanzania: 116</div>
+                            <div class="hotline-number">Rwanda: 3014</div>
+                            <p>24/7 confidential crisis support available</p>
+                            <button class="btn" onclick="triggerEmergency()" style="background: #ff4757; margin-top: 15px;">🆘 Emergency Alert</button>
+                        </div>
+                        
+                        <div class="health-topics">
+                            <div class="topic-card urgent">
+                                <div class="topic-icon">👮‍♀️</div>
+                                <h3>Gender-Based Violence</h3>
+                                <p>Immediate support for survivors of violence or abuse.</p>
+                                <button class="btn">Get Help Now</button>
+                            </div>
+                            <div class="topic-card urgent">
+                                <div class="topic-icon">🏥</div>
+                                <h3>Health Emergency</h3>
+                                <p>Quick access to medical emergency services.</p>
+                                <button class="btn">Find Clinic</button>
+                            </div>
+                            <div class="topic-card urgent">
+                                <div class="topic-icon">💭</div>
+                                <h3>Mental Health Crisis</h3>
+                                <p>Confidential counseling and mental health support.</p>
+                                <button class="btn">Talk to Counselor</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
